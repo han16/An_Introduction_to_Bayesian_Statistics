@@ -1,0 +1,88 @@
+---
+title: "Figures"
+author: "Shengtong"
+date: "October 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=F}
+set.seed(123)
+mu=c(0,0,-1,2)
+phi=c(0.2, 1, 2, 0.5)
+sample.size=100000
+
+#pdf("D:\\Course\\2018FallUWM\\Bayesian Statistics\\Week1\\Figure\\normal_distribution.pdf", width=10)
+for (i in 1:length(mu))
+{
+  rand.var=rnorm(sample.size, mu[i], phi[i])
+  if (i==1)
+  plot(density(rand.var), xlab="", ylab="", col=i, xlim=c(-6,6), main="")
+  if (i>1)
+    lines(density(rand.var), xlab="", ylab="", col=i, xlim=c(-6,6))
+}
+
+legend(-6, 2, c(expression(paste(mu, "=0","; ",  phi, "=0.2")), expression(paste(mu, "=0","; ",  phi, "=1")), expression(paste(mu, "=-1","; ",  phi, "=2")), expression(paste(mu, "=2","; ",  phi, "=0.5"))), col=seq(1, 4), lty=rep(1, 4))
+grid()
+#dev.off()
+```
+
+
+```{r, echo=F}
+#pdf("D:\\Course\\2018FallUWM\\Bayesian Statistics\\Week1\\Figure\\uniform_bino.pdf", width=10)
+set.seed(123)
+num.succ=100
+num.trial=200
+sample.size=10000
+prior=runif(sample.size)
+post=rbeta(sample.size, (num.succ+1), (num.trial-num.succ+1))
+plot(density(post), main="", col="red", xlim=c(0,1), xlab="", lwd=2)
+lines(density(prior), col="black", lwd=2)
+legend(0, 10, c(expression(paste("Beta with ", k, "=100","; ",  n, "=200")), "Uniform [0,1]"), col=c("red", "black"), lty=rep(1, 2), lwd=rep(2,2))
+grid()
+dev.off()
+```
+
+
+```{r, echo=F}
+#pdf("D:\\Course\\2018FallUWM\\Bayesian Statistics\\Week2\\Figure\\prior_post_example.pdf", width=10)
+set.seed(123)
+sample.size=10000
+prior1.mean=370; prior1.var=20^2
+prior2.mean=400; prior2.var=50^2
+data.mean=421; data.var=8^2
+post1.mean=413; post1.var=7^2
+post2.mean=418; post2.var=8^2
+plot(density(rnorm(sample.size, data.mean, data.var^0.5)), main="", col="red", xlab="", ylim=c(0, 0.07), xlim=c(350, 450), lwd=2, lty="solid")
+lines(density(rnorm(sample.size, prior1.mean, prior1.var^0.5)), col="blue", lwd=2,lty="dashed")
+lines(density(rnorm(sample.size, post1.mean, post1.var^0.5)), col="blue", lwd=2,lty="solid")
+lines(density(rnorm(sample.size, prior2.mean, prior2.var^0.5)), col="green", lwd=2,lty="dashed")
+lines(density(rnorm(sample.size, post2.mean, post2.var^0.5)), col="green", lwd=2,lty="solid")
+legend(350, 0.07, c(expression(paste("Sample x ~", N(421, 8^2))), expression(paste("prior ~", N(370, 20^2))), expression(paste("post ~", N(413, 7^2))), expression(paste("prior  ~", N(400, 50^2))), expression(paste("post ~", N(418, 8^2)))), col=c("red", "blue", "blue", "green", "green"), lty=c(1, 2, 1, 2, 1), lwd=rep(2,5))
+grid()
+dev.off()
+```
+
+
+
+```{r, echo=F}
+#pdf("D:\\Course\\2018FallUWM\\Bayesian Statistics\\Week2\\Figure\\inverse-chi-square-density.pdf", width=10)
+library(geoR)
+set.seed(123)
+sample.size=10000
+shape=c(5, 10, 15, 20, 25)
+for (i in 1:length(shape))
+{
+sample.data=rinvchisq(sample.size, shape[i])
+ if (i ==1)
+    plot(density(sample.data), main="", xlim=c(0,1), xlab="", lwd=2, col=i, ylim=c(0,35))
+ if (i>1)
+lines(density(sample.data), col=i, lwd=2)
+}
+legend(0.6, 30, paste("v= ", shape, sep=""), lty=rep(1, length(shape)), lwd=rep(2,length(shape)), col=seq(1, length(shape)))
+grid()
+dev.off()
+```

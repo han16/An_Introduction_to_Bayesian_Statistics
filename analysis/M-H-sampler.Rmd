@@ -1,0 +1,65 @@
+---
+title: "M-H-sampler"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Invariant distribution 
+
+In theory of Markov chains, if there exists a stationary distribution (invariant) that is 
+
+$$ \pi(\phi)=\sum_{\theta}\pi(\theta)p(\phi|\theta)$$
+
+
+In Markov chain Monte Carlo methods, usually we have target distribution and we aim to draw samplers from target distribution. We need to find transition probability $p(\phi|\theta)$ such that the target density is the invariant distribution. When we have such probabilities, we can start a Markov chain at an arbitrary point and let it run a long time, afte which the probability of being in state $\theta$ is given by the target density $\pi(\theta)$. 
+
+## M-H sampler 
+
+It starts from drawing from a candidate density denoted by $q(\phi|\theta)$ with $\sum_{\phi}q(\phi|\theta)=1$. If 
+
+$$\phi(\theta)q(\phi|\theta) > \pi(\phi)q(\theta|\phi)$$
+it says that the process moves from $\theta$ to $\phi$ is too often and moves from $\phi$ to $\theta$ very rarely. To balance the move between $\theta$ and $\phi$, we introduce the {\it probability of moving} $\alpha(\phi|\theta)$ such that it achieves the balance 
+
+$$\phi(\theta)q(\phi|\theta)\alpha(\phi|\theta)=\pi(\phi)q(\theta|\phi)$$
+thus $$\alpha(\phi|\theta)=\frac{\pi(\phi)q(\theta|\phi)}{\pi(\theta)q(\phi|\theta)}$$
+
+
+
+
+
+The M-H sampler can be summarized as 
+
+* sample a candidate point $\theta^*$ from a proposal distribution $q(\theta^*|\theta^{(t-1)})$
+
+* calculate the acceptance rate 
+$$\alpha=min\{\frac{p(\theta^*)q(\theta^{(t-1)}|\theta^*)}{p(\theta^{(t-1)})q(\theta^*|\theta^{(t-1)})},1\}$$
+* generate a uniform random value $U\sim U(0,1)$
+* If $U\leq \alpha$, $\theta^{(t)}=\theta^*$, otherwise $\theta^{(t)}=\theta^{(t-1)}$
+* repeat this process and get the samples ${\theta^{(1)}, \theta^{(2)}, \cdots, \theta^{(n)}}$
+
+
+## Choice of candidate density 
+
+To implement the Metropolis-Hastings algorithm, below are suggestions of choosing candidate densities 
+
+* Random walk chain: where $q(\phi|\theta)=q_1(\phi-\theta)$ with $q_1$ of a symmetric density. So in this case 
+
+$$\alpha(\phi|\theta)=min[\frac{\pi(\phi)}{\phi(\theta)},1]$$
+
+
+* Independence chain: $q(\phi|\theta)=q_2(\phi)$ does not depend on the current state $\theta$. The probability of moving is 
+
+$$\alpha(\phi|\theta)=min[\frac{\pi(\phi)/q_2(\phi)}{\pi(\theta)/q_2(\theta)},1]$$
+
+
+
+## An example 
+
+
+
+
+

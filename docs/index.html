@@ -22,7 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -90,6 +92,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -216,7 +221,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-07-12</p>
+<p><strong>Last updated:</strong> 2018-11-06</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -224,11 +229,34 @@ div.section {
 </details>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> a5bda80 </summary></p>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/han16/An_Introduction_to_Bayesian_Statistics/tree/22f408649911ba6db1a241e4d509791da6ce83c1" target="_blank">22f4086</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    analysis/.Rhistory
+    Ignored:    analysis/data-augmentation_cache/
+
+Untracked files:
+    Untracked:  analysis/M-H-sampler.Rmd
+    Untracked:  analysis/data-augmentation.Rmd
+    Untracked:  analysis/figures.Rmd
+    Untracked:  analysis/gibbs-sampler.Rmd
+    Untracked:  docs/figure/
+
 Unstaged changes:
+    Modified:   .Rprofile
+    Modified:   .gitignore
+    Modified:   An_Introduction_to_Bayesian_Statistics.Rproj
+    Modified:   README.md
+    Modified:   _workflowr.yml
+    Modified:   analysis/_site.yml
+    Modified:   analysis/about.Rmd
     Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
+    Modified:   code/README.md
+    Modified:   data/README.md
+    Modified:   output/README.md
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
@@ -262,7 +290,41 @@ Message
 Rmd
 </td>
 <td style="text-align:left;">
-a5bda80
+<a href="https://github.com/han16/An_Introduction_to_Bayesian_Statistics/blob/22f408649911ba6db1a241e4d509791da6ce83c1/analysis/index.Rmd" target="_blank">22f4086</a>
+</td>
+<td style="text-align:left;">
+Shengtong Han
+</td>
+<td style="text-align:left;">
+2018-07-12
+</td>
+<td style="text-align:left;">
+July122018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/han16/An_Introduction_to_Bayesian_Statistics/22f408649911ba6db1a241e4d509791da6ce83c1/docs/index.html" target="_blank">22f4086</a>
+</td>
+<td style="text-align:left;">
+Shengtong Han
+</td>
+<td style="text-align:left;">
+2018-07-12
+</td>
+<td style="text-align:left;">
+July122018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/han16/An_Introduction_to_Bayesian_Statistics/blob/a5bda804a10245995eed8cc0acdb76e0824c02e3/analysis/index.Rmd" target="_blank">a5bda80</a>
 </td>
 <td style="text-align:left;">
 Shengtong Han
@@ -279,7 +341,12 @@ Start workflowr project.
 </ul>
 <p></details></p>
 <hr />
-<p>Welcome to my research website.</p>
+<ul>
+<li><p><a href="figures.html">Some figures</a> generated in other chapters</p></li>
+<li><p><a href="data-augmentation.html">Data Augmentation</a></p></li>
+<li><p><a href="gibbs-sampler.html">Gibbs Sampler</a></p></li>
+<li><p><a href="M-H-sampler.html">The Metropolis-Hastings algorithm</a></p></li>
+</ul>
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
@@ -297,7 +364,7 @@ footer is added to webpages before the MathJax javascript. -->
 <p>
   This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
   analysis was created with
-  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.0.1
+  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
 </p>
 <hr>
 

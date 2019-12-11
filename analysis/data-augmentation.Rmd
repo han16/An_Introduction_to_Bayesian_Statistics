@@ -1,0 +1,60 @@
+---
+title: "data-augmentation"
+author: "Shengtong"
+date: "October 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data augmentation by Monte Carlo 
+
+
+
+## Genetic linkage example 
+
+The likelihood of augmented data is 
+
+$$ p({\bf y}| \eta) \propto \eta^{y_1+y_4}(1-\eta)^{y_2+y_3}$$
+
+
+* imputation step: At the $t$th stage, pick $m$ possible values $\eta^{(1)}, \cdots, \eta^{(m)}$ by some random mechanism with the current density and for each $\eta$, generate an augmented ${\bf y}$ that is picking a value $y_1^{(i)}$ with a binomial distribution $Bi(x_1, \frac{\eta^{(i)}}{\eta^{(i)}+2})$  
+
+
+* posterior step: take the new "current" distribution of $\eta$ as a mixture of $m$ beta distributions generated, all values of $i$ treated as equally likely. 
+
+```{r, echo=T, cache=T}
+set.seed(123)
+niter=50
+minitial=20
+etadivs=1000
+mag=10
+scale=8
+x=c(125, 18, 20, 34)
+pagethrow=12
+m=minitial
+eta=runif(m) # eandom from U(0,1)
+y=rbinom(m, x[1], eta/(eta+2)) # random binomial 
+for (t in 1:niter)
+{
+  mold=m
+  if (t>30)
+    m=200
+  if (t>40)
+    m=1000
+  i0=floor(runif(m, 0, mold))
+  eta=rbeta(m, y[i0]+x[4]+1, x[2]+x[3]+1) # random beta
+  y=rbinom(m, x[1], eta/(eta+2))
+  
+}
+p=rep(0, etadivs) # vector of etadivs zeroes
+for (etastep in 1:(etadivs-1))
+{
+  eta=etastep/etadivs  # eta=1/n, 2/n, ...1
+  term=exp((y+x[4])*log(eta)+(x[2]+x[3])*log(1-eta)+lgamma(y+x[2]+x[3]+x[4]+2)-lgamma(y+x[4]+1)-lgamma(x[2]+x[3]+1))
+  p[etastep]=p[etastep]+sum(term)/m
+}
+plot(1:etadivs/etadivs, p, pch=".", xlab="eta", main="eta=0.627")
+```

@@ -6,4 +6,12 @@ output:
     toc: false
 ---
 
-Welcome to my research website.
+* [Some figures](figures.html) generated in other chapters  
+
+* [Data Augmentation](data-augmentation.html)
+
+
+* [Gibbs Sampler](gibbs-sampler.html)
+
+* [The Metropolis-Hastings algorithm](M-H-sampler.html)
+
