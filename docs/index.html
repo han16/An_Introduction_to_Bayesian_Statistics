@@ -15,16 +15,15 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -99,6 +98,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -113,7 +115,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -133,6 +134,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -154,18 +192,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -205,13 +302,6 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<!-- Add a small amount of space between sections. -->
-<style type="text/css">
-div.section {
-  padding-top: 12px;
-}
-</style>
-
 <div class="fluid-row" id="header">
 
 
@@ -221,152 +311,38 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-11-06</p>
-<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
+<div id="course-description" class="section level2">
+<h2>Course description:</h2>
+<p>In parallel to classical statistical frequentist approach, Bayesian statistics serves another way to make statistical inference, which not only rely on the sample information collected, but also on external prior knowledge. The prior information that can be from experts’ past experience or others’ knowledge in the field in some cases may play a vital role in making decisions. For instance, in biological science field, people have accumulated much knowledge about association/causes of human diseases, which are clearly needed to be taken into account in the modeling. Topics will cover the basic principles of Bayesian statistics, Bayesian inference for some common distributions, hierarchical modeling and Gibbs sampling.</p>
+</div>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites:</h2>
+<p>PH 702: An introduction to Biostatistics; PH711:Intermediate Biostatistics; PH712:Probability and Statistical Inference; PH718: Data Management and Visualization in R or consent of instructor.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
 <ul>
-<li>
-<p><details> <summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/han16/An_Introduction_to_Bayesian_Statistics/tree/22f408649911ba6db1a241e4d509791da6ce83c1" target="_blank">22f4086</a> </summary></p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
-<pre><code>
-Ignored files:
-    Ignored:    .Rhistory
-    Ignored:    analysis/.Rhistory
-    Ignored:    analysis/data-augmentation_cache/
-
-Untracked files:
-    Untracked:  analysis/M-H-sampler.Rmd
-    Untracked:  analysis/data-augmentation.Rmd
-    Untracked:  analysis/figures.Rmd
-    Untracked:  analysis/gibbs-sampler.Rmd
-    Untracked:  docs/figure/
-
-Unstaged changes:
-    Modified:   .Rprofile
-    Modified:   .gitignore
-    Modified:   An_Introduction_to_Bayesian_Statistics.Rproj
-    Modified:   README.md
-    Modified:   _workflowr.yml
-    Modified:   analysis/_site.yml
-    Modified:   analysis/about.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
-    Modified:   code/README.md
-    Modified:   data/README.md
-    Modified:   output/README.md
-
-</code></pre>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
-</li>
+<li><a href="https://www.amazon.com/Bayesian-Statistics-Introduction-Peter-Lee/dp/1118332571">Bayesian Statistics: an introduction</a>, by Peter M. Lee, 4th edition, ISBN-13: 978-1118332573, ISBN: 978-1-118-59322-6 <strong>Required</strong></li>
+<li><a href="https://www.amazon.com/Introduction-Bayesian-Statistics-William-Bolstad/dp/1118091566">Introduction to Bayesian Statistics</a>, 3rd Edition by William M. Bolstad, James M. Curran, 3rd edition, ISBN: 978-1-118-09156-2 <strong>Required</strong></li>
+<li><a href="https://www.amazon.com/Bayesian-Analysis-Chapman-Statistical-Science/dp/158488388X">Bayesian data analysis</a>, by Gelman, Carlin, Stern and Rubin, 2nd edition, ISBN-13: 978-1584883883</li>
 </ul>
-<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+</div>
+<div id="topics" class="section level2">
+<h2>Topics</h2>
 <ul>
-<table style="border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-File
-</th>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-<th style="text-align:left;">
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Rmd
-</td>
-<td style="text-align:left;">
-<a href="https://github.com/han16/An_Introduction_to_Bayesian_Statistics/blob/22f408649911ba6db1a241e4d509791da6ce83c1/analysis/index.Rmd" target="_blank">22f4086</a>
-</td>
-<td style="text-align:left;">
-Shengtong Han
-</td>
-<td style="text-align:left;">
-2018-07-12
-</td>
-<td style="text-align:left;">
-July122018
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-html
-</td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/han16/An_Introduction_to_Bayesian_Statistics/22f408649911ba6db1a241e4d509791da6ce83c1/docs/index.html" target="_blank">22f4086</a>
-</td>
-<td style="text-align:left;">
-Shengtong Han
-</td>
-<td style="text-align:left;">
-2018-07-12
-</td>
-<td style="text-align:left;">
-July122018
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Rmd
-</td>
-<td style="text-align:left;">
-<a href="https://github.com/han16/An_Introduction_to_Bayesian_Statistics/blob/a5bda804a10245995eed8cc0acdb76e0824c02e3/analysis/index.Rmd" target="_blank">a5bda80</a>
-</td>
-<td style="text-align:left;">
-Shengtong Han
-</td>
-<td style="text-align:left;">
-2018-07-12
-</td>
-<td style="text-align:left;">
-Start workflowr project.
-</td>
-</tr>
-</tbody>
-</table>
+<li><a href="Week1.html">Week 1</a> Bayes’ theorem; random variables; Mean and variances</li>
+<li><a href="Week_2.html">Week 2</a></li>
 </ul>
-<p></details></p>
-<hr />
+</div>
+<div id="other-topics" class="section level2">
+<h2>Other topics</h2>
 <ul>
-<li><p><a href="figures.html">Some figures</a> generated in other chapters</p></li>
 <li><p><a href="data-augmentation.html">Data Augmentation</a></p></li>
 <li><p><a href="gibbs-sampler.html">Gibbs Sampler</a></p></li>
 <li><p><a href="M-H-sampler.html">The Metropolis-Hastings algorithm</a></p></li>
 </ul>
+</div>
 
-<!-- Adjust MathJax settings so that all math formulae are shown using
-TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
-the presentation more consistent at the cost of the webpage sometimes
-taking slightly longer to load. Note that this only works because the
-footer is added to webpages before the MathJax javascript. -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    "HTML-CSS": { availableFonts: ["TeX"] }
-  });
-</script>
-
-<hr>
-<p>
-  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-  analysis was created with
-  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
-</p>
-<hr>
 
 
 

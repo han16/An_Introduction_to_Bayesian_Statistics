@@ -2,11 +2,35 @@
 title: "An Introduction to Bayesian Statistics"
 site: workflowr::wflow_site
 output:
-  workflowr::wflow_html:
-    toc: false
+  html_document: default
+  pdf_document: default
+  word_document: default
+  workflowr::wflow_html: default
 ---
 
-* [Some figures](figures.html) generated in other chapters  
+
+## Course description:
+In parallel to classical statistical frequentist approach, Bayesian statistics serves another way to make statistical inference, which not only rely on the sample information collected, but also on external prior knowledge. The prior information that can be from experts’ past experience or others’ knowledge in the field in some cases may play a vital role in making decisions. For instance, in biological science field, people have accumulated much knowledge about association/causes of human diseases, which are clearly needed to be taken into account in the modeling. Topics will cover the basic principles of Bayesian statistics, Bayesian inference for some common distributions, hierarchical modeling and Gibbs sampling.  
+
+
+## Prerequisites: 
+
+PH 702: An introduction to Biostatistics; PH711:Intermediate Biostatistics; PH712:Probability and Statistical Inference; PH718: Data Management and Visualization in R or consent of instructor. 
+
+
+## References 
+
+* [Bayesian Statistics: an introduction](https://www.amazon.com/Bayesian-Statistics-Introduction-Peter-Lee/dp/1118332571), by Peter M. Lee, 4th edition, ISBN-13: 978-1118332573, ISBN: 978-1-118-59322-6 **Required**
+* [Introduction to Bayesian Statistics](https://www.amazon.com/Introduction-Bayesian-Statistics-William-Bolstad/dp/1118091566), 3rd Edition by William M. Bolstad, James M. Curran, 3rd edition, ISBN: 978-1-118-09156-2 **Required**
+* [Bayesian data analysis](https://www.amazon.com/Bayesian-Analysis-Chapman-Statistical-Science/dp/158488388X), by Gelman, Carlin, Stern and Rubin, 2nd edition, ISBN-13: 978-1584883883
+
+## Topics 
+
+* [Week 1](Week1.html) Bayes’ theorem; random variables; Mean and variances
+* [Week 2](Week_2.html)
+
+## Other topics 
+
 
 * [Data Augmentation](data-augmentation.html)
 

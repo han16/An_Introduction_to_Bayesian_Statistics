@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Shengtong Han" />
+
+
+<title>Week 2</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">An_Introduction_to_Bayesian_Statistics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Week 2</h1>
+<h4 class="author"><em>Shengtong Han</em></h4>
+
+</div>
+
+
+<div id="posterior-distribution" class="section level2">
+<h2>Posterior distribution</h2>
+<p>Suppose we are interested in <span class="math inline">\(k\)</span> unknown quantities</p>
+<p><span class="math inline">\(\theta=(\theta_1, \cdots, \theta_k)\)</span>,</p>
+<p>and the prior belief of <span class="math inline">\(\theta\)</span> is <span class="math inline">\(p(\theta)\)</span>. Assume we have <span class="math inline">\(n\)</span> observations <span class="math inline">\({\bf X}=(X_1, \cdots, X_n)\)</span> that have a density which depends on these <span class="math inline">\(k\)</span> unknown parameters. But the PDF of <span class="math inline">\({\bf X}\)</span> depends on <span class="math inline">\(\theta\)</span> in a known way via <span class="math display">\[p(\bf X| \theta) \]</span></p>
+<p>Basic idea: <strong>take into account both prior belief <span class="math inline">\(p(\theta)\)</span> and sample <span class="math inline">\({\bf X}\)</span> to infer <span class="math inline">\(p(\theta|{\bf X})\)</span></strong>. By Bayes’ theorem <span class="math display">\[p(\theta|{\bf X}) \propto p(\theta) p({\bf X}|\theta)\]</span></p>
+<p>where <span class="math inline">\(p({\bf X} | \theta)\)</span> is the <strong>likelihood</strong> function when viewing it as a function of <span class="math inline">\(\theta\)</span>, also written as <span class="math inline">\(l(\theta|{\bf X})=p({\bf X}|\theta)\)</span> It is more often to use <strong>log-likelihood</strong> function <span class="math inline">\(L(\theta|{\bf X})=log l(\theta|{\bf X})\)</span> <span class="math inline">\(Posterior \propto Prior \times Likelihood\)</span></p>
+<div id="standardized-likelihood" class="section level3">
+<h3>Standardized likelihood</h3>
+<p>Note that there is a proportionality in the posterior, and it doesn’t alter the result if multiplying <span class="math inline">\(l(\theta|{\bf X})\)</span> by any constant free of <span class="math inline">\(\theta\)</span>. In fact</p>
+<p><span class="math inline">\(\int l(\theta| {\bf X}) d \theta\)</span> could be multiple integral</p>
+<p>is often finite. Then</p>
+<p><span class="math inline">\(\frac{l(\theta|{\bf X})}{ \int l(\theta|{\bf X}) d \theta }\)</span> is called <strong>standardized</strong> likelihood function.</p>
+</div>
+<div id="sequential-use-of-bayes-theorem" class="section level3">
+<h3>Sequential use of Bayes’ theorem</h3>
+<p>For one sample of observation <span class="math inline">\(\bf X\)</span>,</p>
+<p><span class="math inline">\(p(\theta|{\bf X}) \propto p(\theta) l(\theta|{\bf X})\)</span>.</p>
+<p>If we have two independent samples <span class="math inline">\({\bf X, Y}\)</span>, <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\theta | {\bf X, Y})&amp;\propto p(\theta) l(\theta|{\bf X, Y})\\
+&amp;=p(\theta) p({\bf X, Y}|\theta)\\
+&amp;=p(\theta) p({\bf X}|\theta) p({\bf Y} | \theta)\\
+&amp;= p(\theta|{\bf X}) l(\theta|{\bf Y})
+\end{split}
+\end{equation*}\]</span> where <span class="math inline">\(p(\theta|{\bf X})\)</span> could be treated as a prior for sample <span class="math inline">\({\bf Y}\)</span>.</p>
+</div>
+<div id="predictive-distribution" class="section level3">
+<h3>Predictive distribution</h3>
+</div>
+</div>
+<div id="normal-prior-and-likelihood" class="section level2">
+<h2>Normal prior and likelihood</h2>
+<p>Suppose <span class="math inline">\(x\)</span> is a normal random variable with mean <span class="math inline">\(\theta\)</span> and variance <span class="math inline">\(\phi\)</span>, i.e., <span class="math inline">\(x \sim N(\theta, \phi)\)</span>, with PDF <span class="math display">\[p(x)=\frac{1}{\sqrt{2\pi \phi}} exp\{-\frac{(x-\theta)^2}{2\phi}\}\]</span></p>
+<p>with <span class="math inline">\(\phi\)</span> known. Suppose the prior belief of unknown parameter <span class="math inline">\(\theta\)</span> is also normal, <span class="math inline">\(\theta \sim N(\theta_0, \phi_0)\)</span>, where <span class="math inline">\(\theta_0, \phi_0\)</span> are known. That is</p>
+<p><span class="math display">\[p(\theta)=\frac{1}{\sqrt{2\pi \phi_0}} exp\{-\frac{(\theta-\theta_0)^2}{2 \phi_0}\}\]</span> <span class="math display">\[p(x|\theta)=\frac{1}{\sqrt{2\pi \phi}} exp\{-\frac{(x-\theta)^2}{2\phi}\}\]</span></p>
+<p>The posterior of <span class="math inline">\(\theta\)</span>, by Bayes’ theorem <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\theta|x) &amp; \propto p(\theta) p(x|\theta)\\
+&amp;=\frac{1}{\sqrt{2\pi \phi_0}} exp\{-\frac{(\theta-\theta_0)^2}{2 \phi_0}\} \times \frac{1}{\sqrt{2\pi \phi}} exp\{-\frac{(x-\theta)^2}{2\phi}\} \\
+&amp;\propto exp \Big \{  -\frac{1}{2} \theta^2 (\frac{1}{\phi_0}+\frac{1}{\phi}) +\theta(\frac{\theta_0}{\phi_0}+\frac{x}{\phi}) \Big \}
+\end{split}
+\end{equation*}\]</span> write <span class="math inline">\(\phi_1=\frac{1}{\frac{1}{\phi_0}+\frac{1}{\phi}}, \theta_1=\phi_1 (\frac{\theta_0}{\phi_0}+\frac{x}{\phi})\)</span>, so <span class="math inline">\(\frac{1}{\phi_0}+\frac{1}{\phi}=\frac{1}{\phi_1}; \frac{\theta_0}{\phi_0}+\frac{x}{\phi}=\frac{\theta_1}{\phi_1}\)</span></p>
+<p>thus <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\theta|x) &amp; \propto exp \Big \{ -\frac{\theta^2}{2 \phi_1}+\theta \frac{\theta_1}{\phi_1}\Big\}\\
+&amp; \propto exp \Big \{ -\frac{(\theta-\theta_1)^2}{2\phi_1}\Big\}
+\end{split}
+\end{equation*}\]</span> Hence <span class="math inline">\(\theta|x \sim N(\theta_1, \phi_1)\)</span></p>
+<ul>
+<li><p>precision: <span class="math inline">\(\frac{1}{\phi_1}=\frac{1}{\phi_0}+\frac{1}{\phi}\)</span>. Posterior precision=Prior precision+Data precision</p></li>
+<li><p>mean: <span class="math inline">\(\theta_1=\theta_0\frac{\phi_0^{-1}}{\phi_0^{-1}+\phi^{-1}}+x\frac{\phi^{-1}}{\phi_0^{-1}+\phi^{-1}}\)</span></p></li>
+</ul>
+<p>Posterior mean=weighted mean of prior mean and data value the weights is proportional to their respective precisions</p>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<p>The age of Ennerdale granophyre was measured as <span class="math inline">\(370 \pm 20\)</span> million by K/Ar method and <span class="math inline">\(420\pm 8\)</span> million years by Rb/Sr method in 1960s and 1970s respectively. It is reasonable to assume that errors are normally distributed and the errors marked are meant to be standard deviations. Suppose a scientist has a measure in early 1970s, and his prior was represented as <span class="math inline">\(\theta \sim N(370, 20^2)\)</span>, and suppose that Rb/Sr method results in <span class="math inline">\(x \sim N(\theta, 8^2)\)</span></p>
+<p>The posterior of <span class="math inline">\(\theta\)</span> is</p>
+<p><span class="math display">\[\theta|x \sim N(\theta_1, \phi_1)\]</span> where <span class="math inline">\(\phi_1=\frac{1}{\frac{1}{\phi_0}+\frac{1}{\phi}}=\frac{1}{20^{-2}+8^{-2}}=7.4^2\)</span>, <span class="math inline">\(\theta_1=\theta_0\frac{\phi_0^{-1}}{\phi_0^{-1}+\phi^{-1}}+x\frac{\phi^{-1}}{\phi_0^{-1}+\phi^{-1}}=370\frac{20^{-2}}{20^{-2}+8^{-2}}+421\frac{8^{-2}}{20^{-2}+8^{-2}}=413\)</span> hence</p>
+<p><span class="math inline">\(\theta|x \sim N(431, 7.4^2)\)</span></p>
+<p>If another scientist does not have K/Ar measurement as prior, but had a vague idea that it is likely to be <span class="math inline">\(400\pm 50\)</span> million years, i.e., <span class="math inline">\(\theta \sim N(400, 50^2)\)</span>. Then the posterior mean and variance are</p>
+<p><span class="math display">\[\phi_1=(50^{-2}+8^{-2})^{-1}=8^2\]</span> <span class="math display">\[\theta_1=62(400\times 50^{-1}+421 \times 8^{-2})=418\]</span></p>
+<p><span class="math inline">\(\theta| x \sim N(418, 8^2)\)</span>.</p>
+<p>In both cases, the posterior is almost determined by the data</p>
+<table>
+<thead>
+<tr class="header">
+<th>Prior</th>
+<th>Data</th>
+<th>Posterior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(N(370, 20^2)\)</span></td>
+<td><span class="math inline">\(N(421, 8^2)\)</span></td>
+<td><span class="math inline">\(N(413, 7^2)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(N(400, 50^2)\)</span></td>
+<td></td>
+<td><span class="math inline">\(N(418, 8^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><img src="Week_2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="assumptions" class="section level3">
+<h3>Assumptions</h3>
+<ul>
+<li>The distribution of observation <span class="math inline">\(x\)</span> is assumed to be <strong>normal</strong>, but with only one unknown parameter <span class="math inline">\(\theta\)</span>.</li>
+<li>The variance in the normal distribution, <span class="math inline">\(\phi\)</span> is also assumed to be known, which is hard to justify.</li>
+</ul>
+</div>
+</div>
+<div id="several-normal-observations-and-a-normal-prior" class="section level2">
+<h2>Several normal observations and a normal prior</h2>
+<div id="posterior-distributions" class="section level3">
+<h3>Posterior distributions</h3>
+<p>Suppose we have a prior <span class="math inline">\(\theta \sim N(\theta_0, \phi_0)\)</span> and <span class="math inline">\(n\)</span> independent observations <span class="math inline">\({\bf x}=(x_1, x_2, \cdots, x_n)\)</span> such that <span class="math inline">\(x_i \sim N(\theta, \phi)\)</span>. By Bayes’ theorem, <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\theta|{\bf x}) &amp; \propto p(\theta) p({\bf x} | \theta) \\
+&amp;=p(\theta)p(x_1|\theta)p(x_2|\theta)\cdots p(x_n|\theta)~ (by~independence)\\
+&amp;=(2\pi\phi_0)^{-\frac{1}{2}} exp\Big \{-\frac{(\theta-\theta_0)^2}{2\phi_0} \Big \}\\
+&amp;\times (2\pi \phi)^{-\frac{1}{2}} exp\Big \{-\frac{(x_1-\theta)^2}{2\phi} \Big \} \times \cdots \times (2\pi \phi)^{-\frac{1}{2}} exp\Big \{-\frac{(x_n-\theta)^2}{2\phi} \Big \} \\
+&amp; \propto exp \Big \{ -\frac{\theta^2}{2} (\frac{1}{\theta_0}+\frac{n}{\phi}) +\theta(\frac{\theta_0}{\phi_0}+\frac{\sum x_i}{\phi})\Big\}
+\end{split}
+\end{equation*}\]</span></p>
+<p>write</p>
+<p><span class="math display">\[\phi_1=\frac{1}{\frac{1}{\phi_0}+\frac{n}{\phi}}\]</span> <span class="math display">\[\theta_1=\phi_1(\frac{\theta_0}{\phi_0}+\frac{\sum x_i}{\phi})\]</span></p>
+<p>then <span class="math inline">\(\theta|{\bf x} \sim N(\theta_1, \phi_1)\)</span>.</p>
+<p>Alternatively, write mean and variance as <span class="math display">\[\phi_1=\frac{1}{\phi_0^{-1}+(\phi/n)^{-1}}\]</span> <span class="math display">\[\theta_1=\phi_1 \Big \{ \theta_0/\phi_0+\bar{x}/(\phi/n)\Big\}\]</span></p>
+<p>same as the posterior obtained from the single observation of the mean <span class="math inline">\(\bar{x}\)</span> as <span class="math inline">\(\bar{x} \sim N(\theta, \frac{\phi}{n})\)</span></p>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>Consider the chest measurement of 10000 men and a prior <span class="math inline">\(N(38,9)\)</span>. Whitaker and Robbinson’s data show that the mean turned out to be 39.8 with a standard deviation of 2.0. By combining prior and sample data</p>
+<p><span class="math display">\[\phi_1=\frac{1}{9^{-1}+(2^2/10000)^{-1}}=\frac{1}{2500}\]</span> <span class="math display">\[\theta_1=\frac{1}{2500} (38/9+\frac{39.8}{2^2/10000})=39.8\]</span></p>
+</div>
+<div id="predictive-distribution-1" class="section level3">
+<h3>Predictive distribution</h3>
+<p>Consider the predictive distribution of one observation <span class="math inline">\(x_{n+1}\)</span>, since <span class="math inline">\(x_{n+1}=(x_{n+1}-\theta)+\theta\)</span> because of the independence of one another</p>
+<p><span class="math display">\[(x_{n+1}-\theta) \sim N(0, \theta)\]</span> <span class="math display">\[\theta \sim N(\theta_1, \phi_1)\]</span></p>
+<p>so <span class="math inline">\(x_{n+1} \sim N(\theta_1, \phi+\phi_1)\)</span></p>
+</div>
+</div>
+<div id="dominant-likelihoods" class="section level2">
+<h2>Dominant likelihoods</h2>
+<div id="improper-priors" class="section level3">
+<h3>Improper priors</h3>
+<p>So far we know if we have several normal observations and a normal prior and known variance, the posterior for the mean is <span class="math inline">\(N(\theta_1, \phi_1)\)</span>, where <span class="math inline">\(\theta_1, \phi_1\)</span> are given by appropriate formulae.</p>
+<ul>
+<li>Consider the prior <span class="math inline">\(N(\theta_0, \infty)\)</span> which has to be the uniform over the whole real line, couldn’t be used for any proper density function. Similarly <span class="math inline">\(p(\theta)=\kappa, (-\infty &lt; \theta &lt; \infty)\)</span> can not represent a probability density whatever <span class="math inline">\(\kappa\)</span> is.</li>
+<li><strong>improper</strong> density <span class="math inline">\(p(\theta)\)</span>, if <span class="math inline">\(\int_{-\infty}^{\infty} p(\theta)d\theta=\infty\)</span>. Another example is <span class="math inline">\(p(\theta)=\frac{\kappa}{\theta}, 0&lt;\theta&lt;\infty\)</span>.</li>
+</ul>
+<p>Sometimes improper prior could be combined with an ordinary likelihood to give a proper posterior. For instance, if we use prior <span class="math inline">\(p(\theta)=\kappa, \kappa \neq 0\)</span> on the whole real line, combining it with normal likelihood gives standard likelihood as posterior. <strong>Dominant feature of posterior is the likelihood</strong>.</p>
+</div>
+<div id="locally-uniform-priors" class="section level3">
+<h3>Locally uniform priors</h3>
+<p>A prior which does not change very much over the region in which the likelihood is appreciable and does not take very large values outside the region is said to be locally uniform. For such a prior <span class="math inline">\(p(\theta|x) \propto p(x|\theta)=l(\theta|x)\)</span> because prior is uniform</p>
+</div>
+<div id="bayes-postulate" class="section level3">
+<h3>Bayes postulate</h3>
+<p>The situation that we know ``nothing&quot; about <span class="math inline">\(\theta\)</span> should be represented by a uniform prior.</p>
+<p>For example</p>
+<p><span class="math display">\[p(\theta)=1,~~ (0&lt;\theta&lt;1)\]</span> Let <span class="math inline">\(\phi=\frac{1}{\theta}\)</span>. According to the change of variable rule <span class="math inline">\(p(\phi)|d\phi|=p(\theta)|d\theta|\)</span>, <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\phi)&amp;=p(\theta|d\theta/d\phi|) \\
+&amp;=\frac{1}{\phi^2} ~~ (1&lt;\phi&lt;\infty)
+\end{split}
+\end{equation*}\]</span> Not a uniform prior.</p>
+</div>
+<div id="data-translated-likelihoods" class="section level3">
+<h3>Data translated likelihoods</h3>
+<p>The likelihood is <strong>data translated</strong> if it is in a form of</p>
+<p><span class="math display">\[l(\theta|x)=g(\theta-t(x))\]</span> for some function <span class="math inline">\(t\)</span>.</p>
+<p>For example, the likelihood of n sample normal distribution with unknown mean and known variance is</p>
+<p><span class="math display">\[l(\theta|x)=exp \Big \{ -\frac{(\theta-\bar{x})^2}{2\phi/n}\Big\}\]</span></p>
+<p>is of this from.</p>
+<p>If <span class="math inline">\(k\)</span> has a binomial distribution with parameter <span class="math inline">\(\pi\)</span>,</p>
+<p><span class="math display">\[l(\pi|k)\propto \pi^k(1-\pi)^{n-k}\]</span></p>
+<p>can not be expressed in the form of <span class="math inline">\(g(\pi-t(k))\)</span>.</p>
+<p>If the likelihood is in data translated form, different values of the data will give rise to the same functional form for the likelihood except for a shift in location.</p>
+<p>For the normal mean, suppose we have two experiments, one of which has <span class="math inline">\(\bar{x}\)</span> 5 larger than another, then both experiment have the same likelihood function except the corresponding value of <span class="math inline">\(\theta\)</span> differs by 5.</p>
+</div>
+<div id="transformation-of-unknown-parameters" class="section level3">
+<h3>Transformation of unknown parameters</h3>
+<p>When the likelihood is not in data translated form, there may be a function <span class="math inline">\(\psi=\psi(\theta)\)</span> such that</p>
+<p><span class="math display">\[l(\theta|x)=g(\psi(\theta)-t(x))\]</span></p>
+<p>In such a case, the prior information may be put in <span class="math inline">\(\psi\)</span>, rather than in <span class="math inline">\(\theta\)</span>.</p>
+<p>Suppose <span class="math inline">\(x \sim E(\theta)\)</span>, then</p>
+<p><span class="math display">\[p(x|\theta)=\frac{exp(-x/\theta)}{\theta}\]</span></p>
+<p>By multiplying <span class="math inline">\(x\)</span> <span class="math display">\[\begin{equation*}
+\begin{split}
+l(\theta|x)&amp;=\frac{x}{\theta}exp(-x/\theta)\\
+&amp;=exp\Big \{ (logx-log \theta)-exp( logx-log\theta )\Big\}
+\end{split}
+\end{equation*}\]</span> Let</p>
+<p><span class="math display">\[g(y)=exp\{y-exp(-y)\}\]</span></p>
+<p><span class="math display">\[t(x)=log x\]</span> <span class="math display">\[\psi(\theta)=log\theta\]</span></p>
+<p>It is often difficult to express a likelihood function in this from when it is possible and it is not always possible.</p>
+</div>
+</div>
+<div id="highest-density-regions-hdr" class="section level2">
+<h2>Highest density regions (HDR)</h2>
+<div id="summary-of-posterior-information" class="section level3">
+<h3>Summary of posterior information</h3>
+<ul>
+<li>One way to summarize the posterior information is simply presenting the distribution, say <span class="math inline">\(\theta \sim N(413, 7^2)\)</span>.</li>
+<li>Sometimes the probability that the parameter lies in a {} may be of interest, say <span class="math inline">\(p\{\theta&lt;400\}\)</span></li>
+<li>Highest density regions: an interval in which ``most of the distribution&quot; lies; the density at any point inside it is greater than the density at any point outside it. It is also called {</li>
+</ul>
+<p>add a pdf with 95% area shading</p>
+<p>Due to the fact that 95% of area of a normal distribution is within <span class="math inline">\(\pm1.96\)</span> standard deviations of the mean, that is <span class="math inline">\(413\pm 1.96\times 7\)</span> which is <span class="math inline">\((399, 427)\)</span>.</p>
+</div>
+<div id="relation-to-classical-statistics" class="section level3">
+<h3>Relation to classical statistics</h3>
+<ul>
+<li><p>In classical approach, <span class="math inline">\(x\)</span> is regarded as random and gives rise to random interval which has a probability of <span class="math inline">\(95\%\)</span> containing the fixed but unknown parameter <span class="math inline">\(\theta\)</span>.</p>
+<p><span class="math display">\[|\frac{\theta-\tilde{x}}{\sqrt{\phi}}|&lt;1.96\]</span></p></li>
+<li><p>In Bayesian approach, <span class="math inline">\(\theta\)</span> is regraded as random and interval is fixed once the data is available.</p></li>
+</ul>
+<p><span class="math display">\[|\frac{\tilde{\theta}-x}{\sqrt{\phi}}|&lt;1.96\]</span></p>
+</div>
+</div>
+<div id="normal-variance" class="section level2">
+<h2>Normal variance</h2>
+<div id="prior-for-normal-variance" class="section level3">
+<h3>Prior for normal variance</h3>
+<p>Suppose we have sample <span class="math inline">\({\bf x}=(x_1, x_2, \cdots, x_n)\)</span> from <span class="math inline">\(N(\mu, \phi)\)</span> where <span class="math inline">\(\mu\)</span> is known and <span class="math inline">\(\phi\)</span> is unknown. So <span class="math display">\[\begin{equation*}
+\begin{split}
+p({\bf x}|\phi)&amp;=\frac{1}{\sqrt{2\pi \phi}} exp\{-\frac{(x_1-\mu)^2}{2\phi}\} \\
+&amp; \times \cdots \times \frac{1}{\sqrt{2\pi \phi}} exp\{-\frac{(x_n-\mu)^2}{2\phi}\}\\
+&amp; \propto \phi^{-\frac{n}{2}} exp \Big \{ -\frac{\sum(x_i-\mu)^2}{2\phi}\Big \} \\
+&amp; =\phi^{-\frac{n}{2}} exp \Big \{ -\frac{S}{2\phi}\Big \}
+\end{split}
+\end{equation*}\]</span> where <span class="math inline">\(S=\sum(x_i-\mu)^2\)</span>. In principle, the prior of <span class="math inline">\(\phi\)</span> can be of any form, but to make the posterior distribution easy to deal with, the prior may be chosen of a similar form to the likelihood, <span class="math inline">\(p(\phi) \propto \phi^{-\frac{\kappa}{2}} exp(-\frac{S_0}{2\phi})\)</span>, where <span class="math inline">\(\kappa, S_0\)</span> are suitable constants.</p>
+<p>The posterior is <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\phi|{\bf x}) &amp;\propto p(\phi) p({\bf x} | \phi) \\
+&amp; \propto \phi^{-\frac{v+n}{2}-1} exp \Big \{ -\frac{S_0+S}{2\phi}\Big\}
+\end{split}
+\end{equation*}\]</span> where <span class="math inline">\(\kappa=v+2\)</span>. Note the true prior for <span class="math inline">\(\phi\)</span> may not be exactly represented by such a density, but in most cases they can be reasonably approximated by such kind of form. This posterior is close to density of <span class="math inline">\(\chi^2\)</span> distribution.</p>
+<p>Let <span class="math inline">\(\lambda=\frac{1}{\phi}\)</span>, by the change of variable rule <span class="math display">\[\begin{equation*}
+\begin{split}
+p(\lambda|{\bf x})&amp;  \propto p(\phi|{\bf x})|\frac{d \phi}{d \lambda}| \\
+&amp; \propto \lambda^{\frac{v+n}{2}+1} exp\Big \{ -\frac{(S_0+S)\lambda}{2}\Big\} \times \lambda^{-2} \\
+&amp; \propto \lambda^{\frac{v+n}{2}-1} exp\Big \{ -\frac{(S_0+S)\lambda}{2}\Big\}
+\end{split}
+\end{equation*}\]</span> It follows that <span class="math inline">\((S_0+S)\lambda \sim \chi^2_{v+n}\)</span>, furthermore <span class="math inline">\(\phi \sim (S_0+S)\chi_{(v+n)}^{-2}\)</span>, which is <strong>inverse chi-squared distribution</strong>.</p>
+<p>So our prior can be chosen</p>
+<p><span class="math display">\[\phi \sim S_0\chi_v^{-2}\]</span></p>
+<ul>
+<li>it may not be straightforward to choose <span class="math inline">\(v, S_0\)</span></li>
+<li>the prior does not need to be too close since the likelihood will dominate</li>
+<li>consider the mean and variance, <span class="math inline">\(E(\phi)=\frac{S_0}{v-2}, var(\phi)=\frac{2S_0^2}{(v-2)^2(v-4)}\)</span> when choosing prior</li>
+</ul>
+<pre><code>## --------------------------------------------------------------
+##  Analysis of Geostatistical Data
+##  For an Introduction to geoR go to http://www.leg.ufpr.br/geoR
+##  geoR version 1.7-5.2.1 (built on 2016-05-02) is now loaded
+## --------------------------------------------------------------</code></pre>
+<p><img src="Week_2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="reference-prior-for-normal-variance" class="section level3">
+<h3>Reference prior for normal variance</h3>
+</div>
+</div>
+<div id="hdr-for-the-normal-variance" class="section level2">
+<h2>HDR for the normal variance</h2>
+<div id="which-distribution-to-use" class="section level3">
+<h3>Which distribution to use</h3>
+<p>To find HDR of normal variance, we can use</p>
+<ul>
+<li>distribution table: because the distribution of variance is a multiple of the inverse chi-squared distribution</li>
+<li>reference prior: which was uniform in <span class="math inline">\(log(\phi)\)</span>, use <span class="math inline">\(log(\phi)\)</span> in the posterior distribution and look for an interval insider which the posterior density of <span class="math inline">\(log(\phi)\)</span> is higher than anywhere outside.</li>
+</ul>
+</div>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+<p>Uterine weight (in mg) of 20 rats drawn randomly from a large stock</p>
+<table>
+<caption>Uterine weights of 20 rats</caption>
+<tbody>
+<tr class="odd">
+<td>9</td>
+<td>18</td>
+<td>21</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>18</td>
+<td>22</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>19</td>
+<td>22</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>19</td>
+<td>24</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>20</td>
+<td>24</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+<p>Obviously <span class="math inline">\(n=20, \sum x_i=420, \sum x_i^2=9484\)</span> and <span class="math inline">\(\bar{x}=21\)</span>,</p>
+<p><span class="math display">\[S=\sum (x_i-\bar{x})^2=664\]</span></p>
+<p>Suppose we know the mean and can assume</p>
+<p><span class="math display">\[\phi \propto 664\chi^{-2}_{20}\]</span></p>
+<ul>
+<li>95% HDR for log chi-squared are 9.958 and 35.227 and the interval for <span class="math inline">\(\phi\)</span> is <span class="math inline">\((\frac{664}{35.227}, \frac{664}{9.958})\)</span>, that is <span class="math inline">\((19, 67)\)</span>.</li>
+<li>95 % HDR for inverse chi-squared is <span class="math inline">\((0.025, 0.094)\)</span>, so the interval for <span class="math inline">\(\phi\)</span> is <span class="math inline">\((664\times 0.025, 664\times 0.094)\)</span>, that is <span class="math inline">\((17,62)\)</span>.</li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Shengtong Han" />
+
+
+<title>Week 1</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">An_Introduction_to_Bayesian_Statistics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Week 1</h1>
+<h4 class="author"><em>Shengtong Han</em></h4>
+
+</div>
+
+
+<div id="probability" class="section level2">
+<h2>Probability</h2>
+<div id="common-notations-for-sets-and-elements" class="section level3">
+<h3>Common notations for sets and elements</h3>
+<p><code>iff</code> means <code>if and only if</code>. For sets: <span class="math inline">\(A, B, C, \cdots\)</span> and the elements <span class="math inline">\(x, y, z, \cdots\)</span>,</p>
+<ul>
+<li><span class="math inline">\(x \in A\)</span> iff <span class="math inline">\(x\)</span> is a member of <span class="math inline">\(A\)</span>.</li>
+<li><span class="math inline">\(\emptyset\)</span> is the null/empty set without any elements</li>
+<li>A <span class="math inline">\(\subset\)</span> B iff <span class="math inline">\(x \in A\)</span> implies <span class="math inline">\(y \in B\)</span></li>
+<li>A <span class="math inline">\(\cup\)</span> B ={x: x <span class="math inline">\(\in\)</span> A or x <span class="math inline">\(\in\)</span> B}: the union of A and B.</li>
+<li><span class="math inline">\(AB=\{x: x \in A ~ and ~ x \in B\}\)</span>: the intersection of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(A\setminus B =\{x: x \in A, ~ but~ x \notin B\}\)</span>: difference set <span class="math inline">\(A\)</span> less <span class="math inline">\(B\)</span></li>
+</ul>
+<p>What is the probability of <strong>an event</strong> <code>red three, yellow five</code>? An event is defined as a set of elementary events.</p>
+</div>
+<div id="axioms-for-probabilities" class="section level3">
+<h3>Axioms for probabilities</h3>
+<p>Sometimes an event can be a future occurrence, whose probability depends on current knowledge. Formally, suppose there are a pair of events <span class="math inline">\(E, H\)</span>. One is interested in <span class="math inline">\(P(E|H)\)</span>: the probability of event E given the hypothesis <span class="math inline">\(H\)</span>. The following axioms hold</p>
+<ul>
+<li>[P1] <span class="math inline">\(P(E|H) \geq 0\)</span> for all <span class="math inline">\(E, H\)</span></li>
+<li>[P2] <span class="math inline">\(P(H|H)=1\)</span> for all <span class="math inline">\(H\)</span></li>
+<li>[P3] <span class="math inline">\(P(E\cup F|H )=P(E|H)+P(F|H)\)</span> when <span class="math inline">\(EFH=\emptyset\)</span></li>
+<li>[P4] <span class="math inline">\(P(E|FH)P(F|H)=P(EF|H)\)</span> <span class="math inline">\(P4\)</span> can be re-written as</li>
+</ul>
+<p><span class="math display">\[P(E|FH)=\frac{P(EF|H)}{P(F|H)} when P(F|H) \neq 0\]</span></p>
+<p>The twins are classified according as they had a criminal conviction (C) or not (N) and according as they were monozygotic (M) or dizygotic (D).</p>
+<table>
+<thead>
+<tr class="header">
+<th>\</th>
+<th>C</th>
+<th>N</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>M</td>
+<td>10</td>
+<td>3</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>2</td>
+<td>15</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>12</td>
+<td>18</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<p>Denote by <span class="math inline">\(H\)</span> the knowledge that an individual has been picked randomly from the population. Then <span class="math inline">\(P(C|H)=\frac{12}{30}\)</span> <span class="math inline">\(P(MC|H)=\frac{10}{30}\)</span> <span class="math inline">\(P(M|CH)=\frac{10}{12}\)</span> (Sample space has changed) Hence <span class="math inline">\(P(M|CH)P(C|H)=P(MC|H)\)</span>.</p>
+<p>Reference: Fisher, R.A. Statistical methods for research workers, Edinburg: Oliver &amp; Boyd (1925b)</p>
+</div>
+<div id="unconditional-probability" class="section level3">
+<h3>Unconditional probability</h3>
+<p>Tossing a coin</p>
+<ul>
+<li>Strictly speaking, there is no unconditional probability</li>
+<li>Most statements are made conditional on individual’s knowledge or experience</li>
+<li>The probability of <code>head</code> is approximately <span class="math inline">\(\frac{1}{2}\)</span> after many tries.</li>
+</ul>
+<p><span class="math display">\[P(E)=P(E|\Omega)\]</span></p>
+<p><span class="math display">\[P(E|F)=P(E|F \Omega)\]</span></p>
+<p>where <span class="math inline">\(\Omega\)</span> is the whole sample space, consisting of all possible events.</p>
+<p>The following axioms hold</p>
+<ul>
+<li><span class="math inline">\(0\leq P(E) \leq 1\)</span>\</li>
+<li><span class="math inline">\(P(\Omega)=1, P(\emptyset)=0\)</span> \</li>
+<li><span class="math inline">\(P(\cup_{n=1}^{\infty} E_n)=\sum_{n=1}^{\infty} P(E_n)\)</span></li>
+</ul>
+<p>where <span class="math inline">\(E_n\)</span> are exclusive events.</p>
+</div>
+<div id="odds" class="section level3">
+<h3>Odds</h3>
+<p>Define the odds on <span class="math inline">\(E\)</span> against <span class="math inline">\(F\)</span> given <span class="math inline">\(H\)</span> as the ratio</p>
+<p><span class="math display">\[P(E|H)/P(F|H) ~ to ~1 \]</span></p>
+<p>or equivalently</p>
+<p><span class="math display">\[\frac{P(E|H)}{P(F|H)}\]</span></p>
+<p>with no mention of <span class="math inline">\(H\)</span>. Odds will be used in Bayesian hypothesis testing.</p>
+</div>
+<div id="independence" class="section level3">
+<h3>Independence</h3>
+<p>Two events are said to be <code>independent</code> given <span class="math inline">\(H\)</span> if</p>
+<p><span class="math display">\[P(EF|H)=P(E|H) P(F|H)\]</span></p>
+<p>It follows immediately from axiom P4 that</p>
+<p><span class="math display">\[P(E|FH)=P(E|H)\]</span></p>
+<p><strong>idea: adding extra information of <span class="math inline">\(F\)</span> does not alter the probability of <span class="math inline">\(E\)</span> that given <span class="math inline">\(H\)</span> alone</strong></p>
+<p>A sequence of events <span class="math inline">\(E_n\)</span> is said to be <code>pairwise independent</code> given <span class="math inline">\(H\)</span> if</p>
+<p><span class="math display">\[P(E_mE_n|H)=P(E_m|H) P(E_n|H)\]</span></p>
+<p>for <span class="math inline">\(m \neq n\)</span> and is said to be <code>mutually independent</code> given <span class="math inline">\(H\)</span> if for <strong>every finite subset</strong></p>
+<p><span class="math display">\[P(E_{n1}E_{n2}\cdots E_{nk}|H)= P(E_{n1}|H)P(E_{n2}|H)\cdots P(E_{nk}|H)\]</span></p>
+<p><strong>Warning: mutually independent doesn’t imply pairwise independent</strong></p>
+</div>
+</div>
+<div id="bayes-theorem" class="section level2">
+<h2>Bayes’ theorem</h2>
+<div id="derived-results-of-axioms" class="section level3">
+<h3>Derived results of axioms</h3>
+<p>From P2, P4 and <span class="math inline">\(HH=H\)</span>,</p>
+<p><span class="math display">\[P(E|H)=P(EH|H)\]</span></p>
+<p>In particular</p>
+<p><span class="math display">\[P(E)=P(E\Omega)\]</span></p>
+<p>If given <span class="math inline">\(H\)</span>, <span class="math inline">\(E\)</span> implies <span class="math inline">\(F\)</span>, that is <span class="math inline">\(EH \subset F\)</span> and so <span class="math inline">\(EFH=EH\)</span>. <span class="math inline">\(P(E|FH)P(F|H)=P(EF|H) (~by~P4)=P(EFH|H)=P(EH|H)(~because ~EFH=EH)=P(E|H)\)</span></p>
+<p>Thus <span class="math inline">\(P(E|H) \leq P(F|H)\)</span> if given <span class="math inline">\(H\)</span>, <span class="math inline">\(E\)</span> implies <span class="math inline">\(F\)</span>.</p>
+<p>In particular, replace <span class="math inline">\(H\)</span> with <span class="math inline">\(\Omega\)</span>, if <span class="math inline">\(E\)</span> implies <span class="math inline">\(F\)</span> then</p>
+<p><span class="math display">\[P(E|F)P(F)=P(E)\]</span> <span class="math display">\[P(E) \leq P(F)\]</span></p>
+<p>Let <span class="math inline">\(H_n\)</span> be a sequence of exclusive and exhaustive events and <span class="math inline">\(E\)</span> be any event.</p>
+<p><span class="math display">\[P(E)=\sum_n P(E|H_n)P(H_n)\]</span> generalized addition law</p>
+<p>By P4</p>
+<p><span class="math display">\[P(H_n|E)P(E)=P(EH_n)=P(H_n)P(E|H_n)\]</span></p>
+<pre><code>Thus</code></pre>
+<p><span class="math inline">\(P(H_n|E)=\frac{P(H_n)P(E|H_n)}{P(E)}  \propto P(H_n)P(E|H_n)(~provided~P(E) \neq 0)\)</span></p>
+<p>Let <span class="math inline">\(H_n\)</span> be a sequence of exclusive and exhaustive events, then</p>
+<p><span class="math display">\[P(H_n|E)=\frac{P(H_n)P(E|H_n)}{\sum_m P(H_m) P(E|H_m)}\]</span></p>
+<pre><code>By repeatedly applying P4,</code></pre>
+<p><span class="math display">\[P(H_1H_2\cdots H_n)=P(H_1)P(H_2|H_1)\cdots P(H_n|H_1H_2\cdots H_{n-1})\]</span></p>
+<p>where <span class="math inline">\(H_1, H_2, \cdots, H_n\)</span> are any events.</p>
+<p>### An Example: The Biology of twins</p>
+<p>Background: Twins can be either Monozygotic(M) ( from the same egg) or dizygotic (D). Monozygotic twins are identical and thus look very similar and more important are of the same sex. While dizygotic twins can be of opposite sex, but assuming are equally probable. Denote by the sexes of a pair of twins <span class="math inline">\(GG, BB, GB\)</span> (<span class="math inline">\(GB\)</span> is indistinguishable from BG).</p>
+<p><span class="math display">\[P(GG|M)=P(BB|M)=\frac{1}{2}, P(GB|M)=0\]</span> <span class="math display">\[P(GG|D)=P(BB|M)=\frac{1}{4}, P(GB|D)=\frac{1}{2}\]</span></p>
+<pre><code>By Bayes&#39;s theorem</code></pre>
+<p><span class="math inline">\(P(GG)=P(GG|M)P(M)+P(GG|D)P(D) =\frac{1}{2} P(M)+\frac{1}{4}(1-P(M))\)</span></p>
+<p>thus</p>
+<p><span class="math display">\[P(M)=4P(GG)-1\]</span> The sex distribution of all twins can be used to estimate the proportion of monozygotic twins in the whole population.</p>
+</div>
+</div>
+<div id="random-variables" class="section level2">
+<h2>Random variables</h2>
+<div id="discrete-random-variables" class="section level3">
+<h3>Discrete random variables</h3>
+<p>Let <span class="math inline">\(\Omega\)</span> be a set of all elementary events, suppose with each elementary event <span class="math inline">\(\omega \in \Omega\)</span>, there is a function <span class="math inline">\(\tilde{m}\)</span> mapping <span class="math inline">\(\Omega\)</span> to the set of all integers. This function is said to be a <strong>random variable</strong> or an r.v.</p>
+<p>For example, in the experiment of tossing a red die and a blue die, <span class="math inline">\(\omega\)</span> could be a event of <code>red three, yellow two</code> and <span class="math inline">\(\tilde{m}\)</span> could be 5.</p>
+<p>There are two ways to describe the distribution of a random variable</p>
+<ul>
+<li>Probability density function (PDF): <span class="math inline">\(p(m)=P\{\omega, \tilde{m}(\omega)=m\}\)</span></li>
+</ul>
+<p>the probability of random variable <span class="math inline">\(\tilde{m}\)</span> taking value of <span class="math inline">\(m\)</span>.</p>
+<ul>
+<li>Cumulative distribution function (CDF), defined by <span class="math inline">\(F(m)=P(\tilde{m}\leq m)=\sum_{k\leq m} p(k)\)</span></li>
+</ul>
+<p>Because PDF has properties <span class="math inline">\(p(m) \geq 0, \sum_mp(m)=1\)</span> leading to</p>
+<p><span class="math inline">\(F(m)\leq F(m&#39;)\)</span> if <span class="math inline">\(m \leq m&#39;\)</span>,<br />
+<span class="math inline">\(lim_{m\rightarrow -\infty} F(m)=0, lim_{m \rightarrow \infty} F(m)=1\)</span> #### Binomial distribution In a sequence of <span class="math inline">\(n\)</span> independent trials, each of which results in a success with probability <span class="math inline">\(\pi\)</span> or failure (<span class="math inline">\(1-\pi\)</span>), the number of successes <span class="math inline">\(X\)</span> is said to be following a Binomial distribution with parameter <span class="math inline">\(\pi\)</span>, denoted as <span class="math inline">\(X \sim B(n, \pi)\)</span></p>
+<p>and <span class="math inline">\(p(k)\)</span>= <span class="math inline">\({n \choose k} \pi^k(1-\pi)^{n-k}\)</span>, <span class="math inline">\(0 \leq k \leq n\)</span></p>
+<p>Show that: if <span class="math inline">\(X, Y\)</span> are independent and <span class="math inline">\(X \sim B(m, \pi), Y \sim B(n, \pi)\)</span>, then <span class="math inline">\(X+Y \sim B(m+n, \pi)\)</span>.</p>
+</div>
+<div id="continuous-random-variables" class="section level3">
+<h3>Continuous random variables</h3>
+<p>In contrast to discrete random variable, continuous random variable takes a real number <span class="math inline">\(\tilde{x}(\omega)\)</span> for each elementary event <span class="math inline">\(\omega \in \Omega\)</span>. Its cumulative distribution function is</p>
+<p><span class="math inline">\(F(x)=P(\tilde{x} \leq x)=P(\{\omega: \tilde{x}(\omega) \leq x\})\)</span> Similarly,</p>
+<p><span class="math inline">\(F(x) \leq F(x&#39;)\)</span> if <span class="math inline">\(x \leq x&#39;\)</span>, <span class="math inline">\(lim_{x \rightarrow -\infty} F(x)=0, lim_{x \rightarrow \infty} F(x)=1\)</span></p>
+<p>For continuous random variable, usually there is a function <span class="math inline">\(p(x)\)</span>, such that</p>
+<p><span class="math inline">\(F(x)=\int_{-\infty}^{x}p(\delta)d\delta\)</span></p>
+<p>where <span class="math inline">\(p(x)\)</span> is called probability density function (PDF). It is hard to interpret <span class="math inline">\(p(x)\)</span>, and for small <span class="math inline">\(\delta x\)</span>,</p>
+<p><span class="math inline">\(p(x)\delta x \approxeq P(x &lt; \tilde{x} \leq x+\delta x)=P(\{\omega: x &lt;\tilde{x}(\omega) \leq x+\delta x\})\)</span></p>
+<div id="the-normal-distribution" class="section level4">
+<h4>The normal distribution</h4>
+<p>The most important continuous distribution is normal distribution or Gaussian distribution. The standard normal distribution has PDF, i.e. <span class="math inline">\(z \sim N(0,1)\)</span> <span class="math inline">\(p(z)=(2\pi)^{-\frac{1}{2}}exp(-\frac{z^2}{2})\)</span> For standard normal distribution</p>
+<ul>
+<li>68% area between -1 and 1</li>
+<li>95 % area between -2 and 2</li>
+<li>99.7% area between -3 and 3</li>
+</ul>
+<p><img src="Week1_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>More generally, if <span class="math inline">\(x\)</span> follows a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\phi\)</span>, i.e. <span class="math inline">\(x \sim N(\mu, \phi)\)</span>, the PDF is</p>
+<p><span class="math inline">\(p(x)=(2\pi \phi)^{-\frac{1}{2}}exp\{-\frac{(x-\mu)^2}{2\phi}\}\)</span></p>
+<p>Normal distribution is important mainly because of the <strong>Central Limit Theorem</strong> which says if a random variable can be expressed as a sum of large number of independent components, no one of which dominates others, then this sum will be approximately normally distributed.</p>
+</div>
+</div>
+<div id="two-discrete-random-variables" class="section level3">
+<h3>Two discrete random variables</h3>
+<p>The sequence <span class="math inline">\(p(m,n)\)</span> is said to be a bivariate density function or bivariate PDF or joint PDF of random variables <span class="math inline">\(m, n\)</span> if <span class="math inline">\(p(m,n)=P(\{\omega: \tilde{m}(\omega)=m, \tilde{n}(\omega)=n\})\)</span> Clearly, <span class="math inline">\(p(m,n)\geq 0\)</span>, <span class="math inline">\(\sum_m \sum_n p(m,n)=1\)</span></p>
+<ul>
+<li><p>Joint distribution function of <span class="math inline">\((m,n)\)</span> is <span class="math inline">\(F(m,n)=\sum_{k \leq m} \sum_{l \leq n} p(k,l)\)</span></p></li>
+<li><p>The marginal density of <span class="math inline">\(m\)</span> is <span class="math inline">\(p(m)=\sum_n p(m,n)\)</span></p></li>
+<li><p>The conditional density of <span class="math inline">\(n\)</span> given <span class="math inline">\(m\)</span> is</p></li>
+</ul>
+<p><span class="math inline">\(p(n|m)=P(\tilde{n}=n|\tilde{m}=m)=\frac{p(m,n)}{p(m)}\)</span> if <span class="math inline">\(p(m) \neq 0\)</span></p>
+<ul>
+<li>Conditional distribution function</li>
+</ul>
+<p><span class="math inline">\(F(n|m)=P(\tilde{n} \leq n |\tilde{m}=m)=\sum_{k \leq n} p(k|m)\)</span></p>
+</div>
+<div id="two-continuous-random-variables" class="section level3">
+<h3>Two continuous random variables</h3>
+<p>The joint distribution function of two continuous random variables is defined as</p>
+<p><span class="math inline">\(F(x,y)=P(\tilde{x} \leq x, \tilde{y} \leq y)\)</span></p>
+<p>Marginal distribution functions are</p>
+<p><span class="math inline">\(F(x, +\infty)\)</span>, <span class="math inline">\(F(+\infty, y)\)</span></p>
+<p>If <span class="math inline">\(p(x,y)\)</span> is the joint density function, then</p>
+<p><span class="math inline">\(F(x,y)=\int_{-\infty}^x \int_{-\infty}^y p(\eta, \delta) d \eta d \delta\)</span></p>
+<p>If we know joint distribution function <span class="math inline">\(F(x,y)\)</span>, then</p>
+<p><span class="math inline">\(p(x,y)=\frac{\partial^2 F(x,y)}{\partial x \partial y}\)</span></p>
+<p>For joint density function <span class="math inline">\(p(x,y)\)</span>, it holds</p>
+<p><span class="math inline">\(p(x,y) \geq 0, \int \int p(x,y) dx dy=1\)</span></p>
+<p>The marginal density is</p>
+<p><span class="math inline">\(p(x)=\int p(x,y)dy\)</span></p>
+<p>The conditional density is, when <span class="math inline">\(p(x) \neq 0\)</span></p>
+<p><span class="math inline">\(p(y|x)=\frac{p(x,y)}{p(x)}\)</span></p>
+<p>and the conditional distribution function is</p>
+<p><span class="math inline">\(F(y|x)=\int_{-\infty}^y p(\eta|x)d\eta\)</span></p>
+</div>
+</div>
+<div id="bayes-theorem-for-random-variables" class="section level2">
+<h2>Bayes’ theorem for random variables</h2>
+<p>It holds for the conditional density, <span class="math inline">\(p(y|x)\)</span></p>
+<p><span class="math inline">\(p(y|x) \geq 0\)</span>, <span class="math inline">\(\int p(y|x)dy=1\)</span> <span class="math inline">\(p(y|x)=\frac{p(x,y)}{p(x)}=\frac{p(y)p(x|y)}{p(x)}\)</span></p>
+<p>So</p>
+<p><span class="math inline">\(p(y|x) \propto p(y) p(x|y)\)</span> Bayes’ formula</p>
+<p>The constant of proportionality is * <span class="math inline">\(\frac{1}{p(x)}=\frac{1}{\int p(y) p(x|y)dy}\)</span>, for continuous r.v. * <span class="math inline">\(\frac{1}{p(x)}=\frac{1}{\sum_y p(y) p(x|y)}\)</span> for discrete r.v.</p>
+<div id="an-example" class="section level3">
+<h3>An example</h3>
+<p>In some cases we may have one continuous r.v and another is discrete r.v. All definitions and formulae still apply.</p>
+<p>Suppose <span class="math inline">\(k\)</span> is the number of successes in <span class="math inline">\(n\)</span> Bernoulli trials, i.e. <span class="math inline">\(k \sim B(n,\pi)\)</span>. But <span class="math inline">\(\pi\)</span> is unknown, and assumed to be uniformly distributed within interval <span class="math inline">\([0,1]\)</span>.</p>
+<p><span class="math inline">\(p(k|\pi)={n \choose k} \pi^k (1-\pi)^{n-k}\)</span>, <span class="math inline">\(k=0, 1, \cdots, n\)</span> \ <span class="math inline">\(p(\pi)=1\)</span>, <span class="math inline">\(0 \leq \pi \leq 1\)</span></p>
+<p>so</p>
+<p><span class="math inline">\(p(\pi|k) \propto p(\pi) p(k|\pi)={n \choose k} \pi^k (1-\pi)^{n-k}  \propto \pi^k(1-\pi)^{n-k}\)</span></p>
+<p>Thus <span class="math inline">\(\pi|k \sim Be(k+1, n-k+1)\)</span>. This beta distribution represents the beliefs about <span class="math inline">\(\pi\)</span> after you have observed <span class="math inline">\(k\)</span> successes in <span class="math inline">\(n\)</span> trials. <img src="Week1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Two random variables are said to be {} if <span class="math inline">\(p(x,y)=p(x)p(y)\)</span></p>
+<p>for all values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. It applies to both continuous and discrete cases. Basic idea: <strong>Knowing <span class="math inline">\(x\)</span> doesn’t affect the distribution of <span class="math inline">\(y\)</span></strong>.</p>
+</div>
+</div>
+<div id="mean-and-variances" class="section level2">
+<h2>Mean and variances</h2>
+<div id="expectation" class="section level3">
+<h3>Expectation</h3>
+<p>For discrete random variable <span class="math inline">\(m\)</span>, if <span class="math inline">\(\sum |m|p(m) &lt; \infty\)</span>, the <strong>mean or expectation</strong> of a discrete random variable is defined as</p>
+<p><span class="math inline">\(E(m)=\sum mp(m)\)</span></p>
+<p>It can be viewed as a long term average. <span class="math inline">\(m\)</span> can be generalized to a function of <span class="math inline">\(g(m)\)</span>, and its expectation is <span class="math inline">\(E(g(m))=\sum g(m) p(m)\)</span>. In a similar way, for continuous random variable <span class="math inline">\(x\)</span>, <span class="math inline">\(E(x)=\int x p(x) dx\)</span>, <span class="math inline">\(E(g(x))=\int g(x) p(x) dx\)</span></p>
+</div>
+<div id="properties" class="section level3">
+<h3>Properties</h3>
+<p>For any two continuous random variables <span class="math inline">\(x,y\)</span></p>
+<p><span class="math inline">\(E(ax+by+c)=\int \int (ax+by+c)p(x,y)dx dy =a\int \int xp(x,y)dx dy+b \int \int yp(x,y)dx dy+c\int \int p(x,y)dx dy=a \int x p(x)dx + b \int yp(y) dy+c ~~(by~marginal~PDF)=aE(x)+bE(y)+c\)</span></p>
+<pre><code>    More generally</code></pre>
+<p><span class="math inline">\(E[ag(x)+bh(y)+c]=aE(g(x))+bE(h(y))+c\)</span></p>
+<p>If random variables <span class="math inline">\(x,y\)</span> are independent <span class="math inline">\(E(xy)=\int \int xyp(x,y)dx dy =\int \int xy p(x)p(y)dx dy ~~(by~independence)=(\int x p(x)dx) (\int y p(y) dy)=(Ex)(Ey)\)</span> more generally<span class="math inline">\(Eg(x)h(y)=(Eg(x))(Eh(y))\)</span></p>
+</div>
+<div id="variance-precision-and-standard-deviation" class="section level3">
+<h3>Variance, precision and standard deviation</h3>
+<pre><code>      To measure how spread out a distribution is, variance is introduced by 
+    </code></pre>
+<p><span class="math inline">\(var(x)=E(x-Ex)^2\)</span></p>
+<ul>
+<li>when the distribution is little spread out, <span class="math inline">\((x-Ex)^2\)</span> is small with high probability and thus <span class="math inline">\(var(x)\)</span> is small</li>
+<li>when the distribution is very spread out, <span class="math inline">\(var(x)\)</span> is large<br />
+</li>
+<li>the reciprocal of variance is called <strong>precision</strong></li>
+<li>the positive square root is called <strong>standard deviation</strong> <span class="math inline">\(var(x)=E(x-Ex)^2=Ex^2-(Ex)^2\)</span></li>
+</ul>
+<div id="examples" class="section level4">
+<h4>Examples</h4>
+<ul>
+<li>Suppose <span class="math inline">\(k \sim B(n, \pi)\)</span>, then <span class="math inline">\(Ek=\sum_{k=0}^n k {n \choose k } \pi^k(1-\pi)^{n-k}=n\pi\)</span>, <span class="math inline">\(Ek(k-1)=n(n-1)\pi^2\)</span>, and <span class="math inline">\(var(k)=n\pi(1-\pi)\)</span>.(proof that)</li>
+<li>If <span class="math inline">\(x \sim N(\mu, \phi)\)</span>, then <span class="math inline">\(Ex=\mu, var(x)=\phi\)</span> (proof that)</li>
+</ul>
+</div>
+</div>
+<div id="covariance-and-correlation" class="section level3">
+<h3>covariance and correlation</h3>
+<p>Define covariance of <span class="math inline">\(x, y\)</span> as <span class="math inline">\(cov(x,y)=E(x-Ex)(y-Ey)=Exy-(Ex)(Ey)\)</span> note that <span class="math display">\[\begin{equation*}
+\begin{split}
+var(x+y)&amp;=E[x+y-E(x+y)]^2\\
+&amp;=E[(x-Ex)+(y-Ey)]^2\\
+&amp;=E(x-Ex)^2+E(y-Ey)^2+2E(x-Ex)(y-Ey)\\
+&amp;=var(x)+var(y)+2cov(x,y).
+\end{split}
+\end{equation*}\]</span> More generally, <span class="math inline">\(var(ax+by+c)=a^2var(x)+b^2var(y)+2abcov(x,y)\geq 0\)</span> for any constants <span class="math inline">\(a, b, c\)</span>. Treat this expression as a quadratic of <span class="math inline">\(a\)</span> and it can not have two unequal real roots because it is always nonnegative. So <span class="math inline">\(cov(x,y)\leq (var(x)) (var(y))\)</span>. Define the correlation coefficient <span class="math inline">\(\rho(x,y)\)</span> as</p>
+<p><span class="math display">\[\rho(x,y)=\frac{cov(x,y)}{\sqrt{var(x)} \sqrt{var(y)}}\]</span></p>
+<p>Clearly <span class="math inline">\(-1 \leq \rho(x,y) \leq 1\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\rho(x,y)=1\)</span> if and only if <span class="math inline">\(ax+by+c=0\)</span> with probability 1 for constants <span class="math inline">\(a,b,c\)</span> and <span class="math inline">\(a, b\)</span> have opposite signs</li>
+<li><span class="math inline">\(\rho(x,y)=1\)</span> if and only if <span class="math inline">\(ax+by+c=0\)</span> with probability 1 for constants <span class="math inline">\(a,b,c\)</span> and <span class="math inline">\(a, b\)</span> have same signs</li>
+<li>If <span class="math inline">\(x,y\)</span> are independent <span class="math inline">\(cov(x,y)=E(xy)-(Ex)(Ey)=0\)</span>. But the converse is not true, that is <span class="math inline">\(\rho(x,y)=0 \nRightarrow x, y\)</span> are independent.</li>
+</ul>
+</div>
+<div id="approximations" class="section level3">
+<h3>Approximations</h3>
+<p>In some cases, it is useful to use approximations to the mean and variance of a function of a random variable. Suppose <span class="math inline">\(z=g(x)\)</span>, where <span class="math inline">\(g\)</span> is a smooth function and <span class="math inline">\(x\)</span> is not too far from its expectation. By Taylor’s theorem,</p>
+<p><span class="math display">\[z \approxeq g(Ex)+(x-Ex)g&#39;(Ex)\]</span></p>
+<ul>
+<li>taking expectations in both sides, a fair approximation to the expectation of <span class="math inline">\(z\)</span> is <span class="math inline">\(Ez=g(Ex)\)</span>.<br />
+</li>
+<li>taking variance in both sides, a reasonable approximation to the variance of <span class="math inline">\(z\)</span> is <span class="math inline">\(var(z)=var(x)[g&#39;(Ex)]^2\)</span>.</li>
+</ul>
+<div id="an-example-1" class="section level4">
+<h4>An example</h4>
+<p>Suppose <span class="math inline">\(x \sim B(n,\pi)\)</span>, <span class="math inline">\(E(x)=n\pi\)</span>. Let <span class="math inline">\(z=g(x)\)</span>, where <span class="math inline">\(g(x)=sin^{-1}\sqrt{x/\pi}\)</span>. <span class="math inline">\(g&#39;(x)=\frac{1}{2 n \sqrt{\frac{x}{n}(1-\frac{x}{n})}}\)</span>. Therefore</p>
+<p><span class="math inline">\(E(z)\approxeq sin^{-1}\sqrt{\pi}, var(z) \approxeq \frac{1}{4n}\)</span></p>
+</div>
+</div>
+<div id="conditional-expectations" class="section level3">
+<h3>Conditional expectations</h3>
+<p>Define conditional expectation of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> by</p>
+<p><span class="math inline">\(E(y|x)=\int yp(y|x)dy\)</span>.</p>
+<p>More generally</p>
+<p><span class="math inline">\(E(g(y)|x) \int g(y) p(y|x) dy\)</span>.</p>
+<p>Define a conditional variance as</p>
+<p><span class="math inline">\(var(y|x)=E[(y-E(y|x))^2|x]=E(y^2|x)-[E(y|x)]^2\)</span>.</p>
+</div>
+<div id="medians-and-modes" class="section level3">
+<h3>Medians and modes</h3>
+<p>Define <strong>median</strong> as any value <span class="math inline">\(x_0\)</span> such that</p>
+<p><span class="math inline">\(P(x \leq x_0) \leq \frac{1}{2}\)</span> and <span class="math inline">\(P(x \geq x_0) \geq \frac{1}{2}\)</span></p>
+<p>In continuous case, there is usually a unique median such that</p>
+<p><span class="math inline">\(P(x \geq x_0)=P(x \leq x_0) =\frac{1}{2}\)</span></p>
+<p><span class="math inline">\(Mode\)</span> is defined as a value at which the PDF achieves the maximum.<br />
+An empirical relation among them is <span class="math inline">\(mean-mode=3(mean-median)\)</span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
